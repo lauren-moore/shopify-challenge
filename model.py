@@ -19,6 +19,10 @@ class Cat(db.Model):
     birthdate = db.Column(db.String(8), nullable=False)
     color = db.Column(db.String, nullable=False)
     spay_or_neutor = db.Column(db.Boolean, nullable=False)
+    location_id = db.Column(db.Integer, db.ForeignKey("locations.location_id"), nullable=False)
+
+    location = db.relationship("Location", backref='cats')
+
 
     def __repr__(self):
         return f'<cat_id={self.cat_id} name={self.name}>'
