@@ -25,35 +25,27 @@ class Cat(db.Model):
 
 
     @classmethod
-    def create_cat(self, first_name, last_name, gender, birthdate, phone_number, email, photo_id, appointment_type, time_checked_in):
+    def create_cat(self, name, gender, birthdate, color, spay_or_neutor):
         """Create and return a new cat to adopt."""
-        patient = Cat(first_name=first_name,
-                    last_name=last_name,
+        cat = Cat(name=name,
                     gender=gender, 
-                    birthdate=birthdate, 
-                    phone_number=phone_number, 
-                    email=email, 
-                    photo_id=photo_id, 
-                    appointment_type=appointment_type,
-                    time_checked_in=time_checked_in)
+                    birthdate=birthdate,  
+                    color=color,
+                    spay_or_neutor=spay_or_neutor)
 
-        return patient
+        return cat
 
     @classmethod
-    def get_patients(self):
-        return Patient.query.all()
+    def get_cats(self):
+        return Cat.query.all()
 
     @classmethod
-    def get_patient_by_id(self, patient_id):
-        return Patient.query.get(patient_id)
-
-    @classmethod
-    def get_patient_by_email(self, email):
-        return Patient.query.filter(Patient.email == email).first()
+    def get_cat_by_id(self, cat_id):
+        return Cat.query.get(cat_id)
     
     @classmethod
-    def get_patient_by_phone_number(self, phone_number):
-        return Patient.query.filter(Patient.phone_number == phone_number).first()
+    def get_cat_by_name(self, name):
+        return Cat.query.filter(Cat.name == name).first()
 
 
 
