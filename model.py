@@ -49,6 +49,41 @@ class Cat(db.Model):
 
 
 
+
+class Location(db.Model):
+    """A location to adopt cats."""
+
+    __tablename__ = 'locations'
+
+    location_id = db.Column(db.Integer,
+                       autoincrement=True,
+                       primary_key=True)
+    city = db.Column(db.String, nullable=False)
+
+    def __repr__(self):
+        return f'<location_id={self.location_id} city={self.city}>'
+
+
+    @classmethod
+    def create_location(self, city):
+        """Create and return a new location to adopt cats."""
+        location = Location(city=city)
+
+        return location
+
+    @classmethod
+    def get_locations(self):
+        return Location.query.all()
+
+    @classmethod
+    def get_location_by_id(self, location_id):
+        return Location.query.get(location_id)
+    
+    @classmethod
+    def get_location_by_city(self, city):
+        return Location.query.filter(Location.city == city).first()
+
+
 def connect_to_db(flask_app, db_uri="postgresql:///med_appointments", echo=True):
     flask_app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
     flask_app.config["SQLALCHEMY_ECHO"] = echo
