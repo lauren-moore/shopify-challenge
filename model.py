@@ -29,13 +29,14 @@ class Cat(db.Model):
 
 
     @classmethod
-    def create_cat(self, name, gender, birthdate, color, spay_or_neutor):
+    def create_cat(self, name, gender, birthdate, color, spay_or_neutor, location):
         """Create and return a new cat to adopt."""
         cat = Cat(name=name,
                     gender=gender, 
                     birthdate=birthdate,  
                     color=color,
-                    spay_or_neutor=spay_or_neutor)
+                    spay_or_neutor=spay_or_neutor,
+                    location=location)
 
         return cat
 
