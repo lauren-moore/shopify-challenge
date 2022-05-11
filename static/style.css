@@ -1,0 +1,30 @@
+body {
+max-width: 100%;
+overflow-x: hidden;
+padding: 0px 80px 0px 80px;
+background: url("/static/images/background.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+}
+
+.below-nav {
+padding: 50px;
+text-align: center;
+}
+
+#title {
+padding-top: 30px;
+text-align: center;
+}
+
+.book-appointments {
+text-align: center;
+}
+
+.app-queue {
+text-align: left;
+padding-top:30px;
+}
