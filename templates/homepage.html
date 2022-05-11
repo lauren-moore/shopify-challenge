@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Cat Adoption Inventory{% endblock %}
+
+{% block body %}
+  <h1 id="title">Welcome!</h1>
+
+    <div class="below-nav">
+        <button class="nav-item">
+              <a class="nav-link" id="navbar" data-bs-toggle="modal" data-bs-target="#registerModal">Add a Cat</a>
+        </button>  
+    </div>
+
+
+<!-- Create a Cat modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add a Cat</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form action="/checkin" method="POST">
+                <div class="row">
+                    <div class="col-md-6">
+                        Name
+                        <p><input type="text" name="name"></p>
+                        Gender
+                        <p><input type="text" name="gender"></p>
+                        Birthdate (MMDDYYYY)
+                        <p><input type="text" name="birthdate"></p>
+                    </div>
+                    <div class="col-md-6">
+                        Color
+                        <p><input type="text" name="color"></p>
+                        Spayed or Neutored?
+                        <p><input type="text" name="spay_or_neutor"></p> 
+                        Location
+                        <p><input type="password" name="location"></p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
