@@ -46,7 +46,7 @@ def add_cat():
                                 birthdate, 
                                 color, 
                                 spay_or_neutor, 
-                                city.location_id)
+                                city)
 
         db.session.add(new_cat)
         db.session.commit()
