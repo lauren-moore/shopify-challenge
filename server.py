@@ -48,9 +48,9 @@ def add_cat():
                                 spay_or_neutor, 
                                 city)
 
-        db.session.add(new_cat)
+        # db.session.add(new_cat)
         db.session.commit()
-        flash(f"{new_cat.name} has been added to the {new_cat.city.name} Adoption Center!")
+        flash(f"{new_cat.name} has been added to the {new_cat.location.city} Adoption Center!")
 
     return redirect('/')
 
