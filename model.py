@@ -19,10 +19,10 @@ class Cat(db.Model):
     birthdate = db.Column(db.String(8), nullable=False)
     color = db.Column(db.String, nullable=False)
     spay_or_neutor = db.Column(db.Boolean, nullable=False)
-    location_id = db.Column(db.Integer, db.ForeignKey("locations.location_id"), nullable=False)
+    location_id = db.Column(db.Integer, db.ForeignKey("locations.location_id"))
 
-    location = db.relationship("Location", backref='cats')
-
+    location = db.relationship("Location", back_populates='cats')
+ 
 
     def __repr__(self):
         return f'<cat_id={self.cat_id} name={self.name}>'
@@ -64,6 +64,8 @@ class Location(db.Model):
                        autoincrement=True,
                        primary_key=True)
     city = db.Column(db.String, nullable=False)
+
+    cats = db.relationship("Cat", back_populates="location")
 
     def __repr__(self):
         return f'<location_id={self.location_id} city={self.city}>'

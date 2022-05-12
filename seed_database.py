@@ -1,34 +1,22 @@
 """Script to seed database."""
 
 import os
-import json
-from random import choice, randint
 
-import model
+from model import Cat, Location, db, connect_to_db
 import server
 
 os.system("dropdb cats")
 os.system("createdb cats")
 
-model.connect_to_db(server.app)
-model.db.create_all()
+connect_to_db(server.app)
+db.create_all()
 
-# Load movie data from JSON file
-with open("data/movies.json") as f:
-    movie_data = json.loads(f.read())
 
-# Create cats
-cats_in_db = []
-for movie in movie_data:
-    title, overview, poster_path = (
-        movie["title"],
-        movie["overview"],
-        movie["poster_path"],
-    )
-    release_date = datetime.strptime(movie["release_date"], "%Y-%m-%d")
+location1 = Location.create_location("Seattle")
+location2 = Location.create_location("Los Angeles")
+location3 = Location.create_location("San Francisco")
 
-    db_movie = crud.create_movie(title, overview, release_date, poster_path)
-    movies_in_db.append(db_movie)
-
-model.db.session.add_all(cats_in_db)
-model.db.session.commit()
+db.session.add(location1)
+db.session.add(location2)
+db.session.add(location3)
+db.session.commit()

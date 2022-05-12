@@ -33,6 +33,8 @@ def add_cat():
     spay_or_neutor = request.form.get("spay_or_neutor")
     location = request.form.get("location")
 
+    city = Location.get_location_by_city(location)
+
     #check if birthdate is correct length
     if len(birthdate) != 8:
         flash("Please enter 8 digits for birthdate as MMDDYYYY")
@@ -40,15 +42,15 @@ def add_cat():
     else:
         #create cat object in database
         new_cat = Cat.create_cat(name, 
-                                    gender, 
-                                    birthdate, 
-                                    color, 
-                                    spay_or_neutor, 
-                                    location)
+                                gender, 
+                                birthdate, 
+                                color, 
+                                spay_or_neutor, 
+                                city.location_id)
 
         db.session.add(new_cat)
         db.session.commit()
-        flash(f"{new_cat.name} has been added to the {new_cat.location} Adoption Center!")
+        flash(f"{new_cat.name} has been added to the {new_cat.city.name} Adoption Center!")
 
     return redirect('/')
 
