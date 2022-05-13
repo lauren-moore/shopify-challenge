@@ -3,7 +3,7 @@
 # imports
 from flask import Flask, render_template, request, flash, session, redirect, jsonify
 from flask_sqlalchemy import SQLAlchemy
-from model import Cat, Location, db, connect_to_db
+from model import Cat, Location, connect_to_db, db
 from jinja2 import StrictUndefined
 
 
@@ -48,12 +48,28 @@ def add_cat():
                                 spay_or_neutor, 
                                 city)
 
-        # db.session.add(new_cat)
-        db.session.commit()
-        flash(f"{new_cat.name} has been added to the {city.city} Adoption Center!")
+        db.session.add(new_cat)
+        print("***************************************")
+        print(new_cat)
+
+        
+        
+    db.session.commit()    
+    print(new_cat)
+    flash(f"{new_cat.name} has been added to the {city.city} Adoption Center!")
 
     return redirect('/')
 
+
+@app.route("/cats")
+def all_cats():
+    """View all cats."""
+
+    cats = Cat.get_cats()
+    print(cats)
+
+    return render_template("all_cats.html",
+                            cats=cats)
 
 if __name__ == "__main__":
     # DebugToolbarExtension(app)

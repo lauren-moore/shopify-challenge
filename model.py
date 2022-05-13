@@ -1,7 +1,6 @@
 """Model for Shopify Inventory Tracking App."""
 
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
 
 db = SQLAlchemy()
 
@@ -22,7 +21,6 @@ class Cat(db.Model):
     location_id = db.Column(db.Integer, db.ForeignKey("locations.location_id"))
 
     location = db.relationship("Location", back_populates='cats')
- 
 
     def __repr__(self):
         return f'<cat_id={self.cat_id} name={self.name}>'
