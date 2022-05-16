@@ -33,7 +33,7 @@ def create():
     gender = request.form.get("gender")
     birthdate = request.form.get("birthdate")
     color = request.form.get("color")
-    spay_or_neutor = request.form.get("spay_or_neutor")
+    spay_or_neuter = request.form.get("spay_or_neuter")
     location = request.form.get("location")
 
     city = Location.get_location_by_city(location)
@@ -53,7 +53,7 @@ def create():
                                 gender, 
                                 birthdate, 
                                 color, 
-                                spay_or_neutor,
+                                spay_or_neuter,
                                 city)
 
         db.session.add(new_cat)

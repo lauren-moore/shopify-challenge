@@ -33,7 +33,7 @@ class Cat(db.Model):
                     gender=gender, 
                     birthdate=birthdate,  
                     color=color,
-                    spay_or_neutor=spay_or_neuter,
+                    spay_or_neuter=spay_or_neuter,
                     location=location)
 
         return cat
