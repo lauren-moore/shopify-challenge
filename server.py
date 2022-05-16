@@ -18,9 +18,11 @@ def homepage():
     """View homepage."""
 
     cats = Cat.get_cats()
+    locations = Location.get_locations()
 
     return render_template("homepage.html",
-                            cats=cats)
+                            cats=cats,
+                            locations=locations)
 
 
 @app.route("/add_cat", methods=["POST"])
@@ -35,6 +37,9 @@ def add_cat():
     location = request.form.get("location")
 
     city = Location.get_location_by_city(location)
+    if not city:
+        city = Location.create_location(location)
+        db.session.add(city)
 
     #check if birthdate is correct length
     if len(birthdate) != 8:
@@ -70,15 +75,15 @@ def delete(cat_id):
     return redirect('/')
 
 
-@app.route("/cats")
-def all_cats():
-    """View all cats."""
+# @app.route("/cats")
+# def all_cats():
+#     """View all cats."""
 
-    cats = Cat.get_cats()
-    print(cats)
+#     cats = Cat.get_cats()
+#     print(cats)
 
-    return render_template("all_cats.html",
-                            cats=cats)
+#     return render_template("all_cats.html",
+#                             cats=cats)
 
 if __name__ == "__main__":
     # DebugToolbarExtension(app)

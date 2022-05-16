@@ -9,9 +9,6 @@
         <button class="nav-item">
               <a class="nav-link" id="navbar" data-bs-toggle="modal" data-bs-target="#registerModal">Add a Cat</a>
         </button>  
-        <button class="nav-item">
-              <a class="nav-link" id="navbar" href="/cats">View all Cats</a>
-        </button>
     </div>
 
 
@@ -86,11 +83,18 @@
                           <input type="radio" name="spay_or_neutor" value="No">
                           <label for="No">No</label><br></p>
                         Location
-                        <select name="location" id="location">
-                          <option value="Seattle">Seattle</option>
-                          <option value="San Francisco">San Francisco</option>
-                          <option value="Los Angeles">Los Angeles</option>
-                        </select>
+                        {% if locations %}
+                          <p id="add-location">
+                            <select name="location">
+                              {% for city in locations %}
+                                <option value="{{city.city}}">{{city.city}}</option>
+                              {% endfor %}
+                            </select>
+                          </p>
+                        {% endif %}
+                        <p><input type="text" name="location"></p>
+                          
+                        
                     </div>
                 </div>
                 <div class="modal-footer">
