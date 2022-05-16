@@ -7,8 +7,6 @@ from model import Cat, connect_to_db, db
 from jinja2 import StrictUndefined
 
 
-db = SQLAlchemy()
-
 # initializing Flask app
 app = Flask(__name__)
 app.secret_key = "dev"
@@ -19,7 +17,10 @@ app.jinja_env.undefined = StrictUndefined
 def homepage():
     """View homepage."""
 
-    return render_template("homepage.html")
+    cats = Cat.get_cats()
+
+    return render_template("homepage.html",
+                            cats=cats)
 
 
 @app.route("/add_cat", methods=["POST"])
@@ -59,6 +60,25 @@ def add_cat():
 
     return redirect('/')
 
+
+@app.route("/delete/<int:cat_id>", methods=["POST"])
+def delete(cat_id):
+    """Delete cat from database."""
+
+    cat_to_delete = Cat.get_cat_by_id(cat_id)
+    print("*****************")
+    print(cat_to_delete)
+
+    # try:
+    db.session.delete(cat_to_delete)
+    print("*******after db delete**********")
+    print(cat_to_delete)
+    db.session.commit()
+    return redirect('/')
+
+    # except:
+    #     flash("Cannot delete at this time.")
+    #     return redirect('/')
 
 @app.route("/cats")
 def all_cats():
