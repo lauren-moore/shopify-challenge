@@ -17,7 +17,7 @@ class Cat(db.Model):
     gender = db.Column(db.String, nullable=False)
     birthdate = db.Column(db.String(8), nullable=False)
     color = db.Column(db.String, nullable=False)
-    spay_or_neutor = db.Column(db.String, nullable=False)
+    spay_or_neuter = db.Column(db.String, nullable=False)
     location_id = db.Column(db.Integer, db.ForeignKey("locations.location_id"))
 
     location = db.relationship("Location", back_populates='cats')
@@ -27,13 +27,13 @@ class Cat(db.Model):
 
 
     @classmethod
-    def create_cat(self, name, gender, birthdate, color, spay_or_neutor, location):
+    def create_cat(self, name, gender, birthdate, color, spay_or_neuter, location):
         """Create and return a new cat to adopt."""
         cat = Cat(name=name,
                     gender=gender, 
                     birthdate=birthdate,  
                     color=color,
-                    spay_or_neutor=spay_or_neutor,
+                    spay_or_neutor=spay_or_neuter,
                     location=location)
 
         return cat

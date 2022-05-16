@@ -35,7 +35,7 @@
                             <td>{{ cat.name }}</td>
                             <td>{{ cat.birthdate }}</td>
                             <td>{{ cat.gender }}</td>
-                            <td>{{ cat.spay_or_neutor }}</td>
+                            <td>{{ cat.spay_or_neuter }}</td>
                             <td>{{ cat.location.city }}</td>
                             <form action="/delete/{{ cat.cat_id }}" method="POST">
                               <td>
@@ -78,9 +78,9 @@
                         Color
                         <p><input type="text" name="color"></p>
                         Spayed or Neutered?                       
-                          <p><input type="radio" name="spay_or_neutor" value="Yes">
+                          <p><input type="radio" name="spay_or_neuter" value="Yes">
                           <label for="Yes">Yes</label>
-                          <input type="radio" name="spay_or_neutor" value="No">
+                          <input type="radio" name="spay_or_neuter" value="No">
                           <label for="No">No</label><br></p>
                         Location
                         {% if locations %}

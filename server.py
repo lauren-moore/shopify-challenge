@@ -26,7 +26,7 @@ def homepage():
 
 
 @app.route("/add_cat", methods=["POST"])
-def add_cat():
+def create():
     """Create a new cat."""
 
     name = request.form.get("name")
@@ -37,6 +37,8 @@ def add_cat():
     location = request.form.get("location")
 
     city = Location.get_location_by_city(location)
+
+    #create new location if not in database
     if not city:
         city = Location.create_location(location)
         db.session.add(city)
@@ -63,6 +65,18 @@ def add_cat():
     return redirect('/')
 
 
+@app.route("/update/<int:cat_id>", methods=["POST"])
+def update(cat_id):
+    """Update cat info."""
+
+    cat_to_update = Cat.get_cat_by_id(cat_id)
+    new_spay_or_neuter = request.form.get("new_spay_or_neuter")
+    cat_to_update.spay_or_neuter = new_spay_or_neuter
+    db.session.commit()
+
+    return redirect('/')
+
+
 @app.route("/delete/<int:cat_id>", methods=["POST"])
 def delete(cat_id):
     """Delete cat from database."""
@@ -75,15 +89,6 @@ def delete(cat_id):
     return redirect('/')
 
 
-# @app.route("/cats")
-# def all_cats():
-#     """View all cats."""
-
-#     cats = Cat.get_cats()
-#     print(cats)
-
-#     return render_template("all_cats.html",
-#                             cats=cats)
 
 if __name__ == "__main__":
     # DebugToolbarExtension(app)
