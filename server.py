@@ -1,9 +1,9 @@
 """Server for Cat Adoption Center app."""
 
 # imports
-from flask import Flask, render_template, request, flash, session, redirect, jsonify
+from flask import Flask, render_template, request, flash, session, redirect
 from flask_sqlalchemy import SQLAlchemy
-from model import Cat, Location, connect_to_db, db
+from model import Cat, connect_to_db, db
 from jinja2 import StrictUndefined
 
 
@@ -31,9 +31,9 @@ def add_cat():
     birthdate = request.form.get("birthdate")
     color = request.form.get("color")
     spay_or_neutor = request.form.get("spay_or_neutor")
-    location = request.form.get("location")
+    # location = request.form.get("location")
 
-    city = Location.get_location_by_city(location)
+    # city = Location.get_location_by_city(location)
 
     #check if birthdate is correct length
     if len(birthdate) != 8:
@@ -45,8 +45,7 @@ def add_cat():
                                 gender, 
                                 birthdate, 
                                 color, 
-                                spay_or_neutor, 
-                                city)
+                                spay_or_neutor)
 
         db.session.add(new_cat)
         print("***************************************")
@@ -56,7 +55,7 @@ def add_cat():
         
     db.session.commit()    
     print(new_cat)
-    flash(f"{new_cat.name} has been added to the {city.city} Adoption Center!")
+    flash(f"{new_cat.name} has been added to the Adoption Center!")
 
     return redirect('/')
 
