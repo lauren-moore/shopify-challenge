@@ -39,7 +39,7 @@
                             <td>{{ cat.birthdate }}</td>
                             <td>{{ cat.gender }}</td>
                             <td>{{ cat.spay_or_neutor }}</td>
-                            <td>TBD</td>
+                            <td>{{ cat.location.city }}</td>
                             <form action="/delete/{{ cat.cat_id }}" method="POST">
                               <td>
                                 <button>
