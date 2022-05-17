@@ -1,11 +1,8 @@
 # Shopify Backend Developer Challenge
 
-**CONTENTS**
-
 - [Instructions](#instructions)
 - [Tech Stack](#tech-stack)
 - [Installation](#installation)
-- [API Routes](#api-routes)
 - [About the Developer](#about-the-developer)
 
 ## Instructions
@@ -26,7 +23,7 @@ Additional Feature:
 
 I chose to use Flask, a lightweight web framework that is flexible and simple to implement, to create API endpoints. For the database, I used postgreSQL as it is a commonly used relational database and allows for scalability, such as adding product information tables, warehouse storage information tables, etc. I used SQLAlchemy to incorporate Flask and postrgresQL with Python.
 
-View the app on Replit: [replit](https://replit.com/@jenniferlei/shopify-backend-developer-challenge#main.py) | [site](https://shopify-backend-developer-challenge.jenniferlei.repl.co/)
+<!-- View the app on Replit: [replit](https://replit.com/@jenniferlei/shopify-backend-developer-challenge#main.py) | [site](https://shopify-backend-developer-challenge.jenniferlei.repl.co/) -->
 
 ## Tech Stack
 
