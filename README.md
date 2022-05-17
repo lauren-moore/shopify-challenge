@@ -20,8 +20,6 @@ Basic CRUD Functionalities:
 
 - Ability to create warehouses/locations and assign inventory to specific locations
 
-<!-- View the app on Replit: [replit](https://replit.com/@jenniferlei/shopify-backend-developer-challenge#main.py) | [site](https://shopify-backend-developer-challenge.jenniferlei.repl.co/) -->
-
 ## Tech Stack
 
 - **Backend:** Python3, Flask, SQLAlchemy
@@ -41,7 +39,7 @@ To run Shopify Coding Challenge on your local machine, follow the instructions b
 Clone repository:
 
 ```
-$ git clone https://github.com/lauren-moore/shopify-backend-developer-challenge.git
+$ git clone https://github.com/lauren-moore/shopify-challenge.git
 ```
 
 Create and activate a virtual environment inside your project directory:
