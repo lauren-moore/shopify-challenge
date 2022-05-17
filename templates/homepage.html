@@ -3,27 +3,27 @@
 {% block title %}Cat Adoption Inventory{% endblock %}
 
 {% block body %}
-  <h1 id="title">Welcome!</h1>
+  <h1 id="title">Cat Adoption Inventory</h1>
 
     <div class="below-nav">
         <button class="nav-item">
-              <a class="nav-link" id="navbar" data-bs-toggle="modal" data-bs-target="#registerModal">Add a Cat</a>
+              <a class="nav-link" data-bs-toggle="modal" data-bs-target="#registerModal">Add a Cat</a>
         </button>  
     </div>
 
 
-    <!-- list of cats -->
+    <!-- View inventory of cats -->
     <div class="container" id="allcats">
             <div class="row">  
                 <table class="table table-striped mt-3">         
                     <thead>
                     <tr>
-                        <th>Edit</th>
                         <th>Cat Name</th>
                         <th>Birthdate</th>
                         <th>Gender</th>
                         <th>Spayed/Neutered</th>
                         <th>Adoption Location</th>
+                        <th>Edit</th>
                         <th>Remove</th>
                     </tr>
                     </thead>
@@ -33,25 +33,31 @@
                     {% else %}
                         {% for cat in cats %}
                         <tr>
-                            <td><a href="update/{{ cat.cat_id}}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                                  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-                                  </svg></td></td>
                             <td>{{ cat.name }}</td>
                             <td>{{ cat.birthdate }}</td>
                             <td>{{ cat.gender }}</td>
                             <td>{{ cat.spay_or_neuter }}
                             <td>{{ cat.location.city }}</td>
-                            <form action="/delete/{{ cat.cat_id }}" method="POST">
-                              <td>
-                                <button>
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                                  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                            <td>
+                                <!-- <button data-bs-toggle="modal" data-bs-target="#updateModal"> -->
+                                  <form action="/update/{{ cat.cat_id }}" method="GET">
+                                  <button>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tools" viewBox="0 0 16 16">
+                                    <path d="M1 0 0 1l2.2 3.081a1 1 0 0 0 .815.419h.07a1 1 0 0 1 .708.293l2.675 2.675-2.617 2.654A3.003 3.003 0 0 0 0 13a3 3 0 1 0 5.878-.851l2.654-2.617.968.968-.305.914a1 1 0 0 0 .242 1.023l3.27 3.27a.997.997 0 0 0 1.414 0l1.586-1.586a.997.997 0 0 0 0-1.414l-3.27-3.27a1 1 0 0 0-1.023-.242L10.5 9.5l-.96-.96 2.68-2.643A3.005 3.005 0 0 0 16 3c0-.269-.035-.53-.102-.777l-2.14 2.141L12 4l-.364-1.757L13.777.102a3 3 0 0 0-3.675 3.68L7.462 6.46 4.793 3.793a1 1 0 0 1-.293-.707v-.071a1 1 0 0 0-.419-.814L1 0Zm9.646 10.646a.5.5 0 0 1 .708 0l2.914 2.915a.5.5 0 0 1-.707.707l-2.915-2.914a.5.5 0 0 1 0-.708ZM3 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026L3 11Z"/>
                                   </svg>
                                 </button>
-                              </td>
+                                </form> 
+                            </td>
+                            <td>
+                              <form action="/delete/{{ cat.cat_id }}" method="POST">
+                              <button>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                </svg>
+                              </button>
                             </form>
+                          </td>
                         </tr>
                         {% endfor %}
                     {% endif %}
@@ -91,15 +97,14 @@
                         {% if locations %}
                           <p id="add-location">
                             <select name="location">
+                              <option hidden disabled selected value> -- select an option -- </option>
                               {% for city in locations %}
                                 <option value="{{city.city}}">{{city.city}}</option>
                               {% endfor %}
                             </select>
                           </p>
                         {% endif %}
-                        <p><input type="text" name="location"></p>
-                          
-                        
+                        <p><input type="text" name="new_location"></p>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -110,4 +115,61 @@
       </div>
     </div>
 
-{% endblock %}
+
+
+
+<!-- Update a Cat modal -->
+    <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Update Cat</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+          {% if cats %}
+            {% for cat in cats %}
+            
+                <div class="row">
+                    <div class="col-md-6">
+                        Name
+                        <p><input type="text" name="name">{{cat.name}}</p>
+                        Gender
+                        <p><input type="text" name="gender"></p>
+                        Birthdate (MMDDYYYY)
+                        <p><input type="text" name="birthdate"></p>
+                    </div>
+                    <div class="col-md-6">
+                        Color
+                        <p><input type="text" name="color"></p>
+                        Spayed or Neutered?                       
+                          <p><input type="radio" name="spay_or_neuter" value="Yes">
+                          <label for="Yes">Yes</label>
+                          <input type="radio" name="spay_or_neuter" value="No">
+                          <label for="No">No</label><br></p>
+                        Available Locations
+                        {% if locations %}
+                          <p id="add-location">
+                            <select name="location">
+                                <option hidden disabled selected value> -- select an option -- </option>
+                              {% for city in locations %}
+                                <option value="{{city.city}}">{{city.city}}</option>
+                              {% endfor %}
+                            </select>
+                          </p>
+                        {% endif %}
+                        Add New Location
+                        <p><input type="text" name="new_location"></p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          {% endfor %}
+          {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+  {% endblock %}

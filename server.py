@@ -34,14 +34,18 @@ def create():
     birthdate = request.form.get("birthdate")
     color = request.form.get("color")
     spay_or_neuter = request.form.get("spay_or_neuter")
-    location = request.form.get("location")
-
-    city = Location.get_location_by_city(location)
-
-    #create new location if not in database
-    if not city:
+    
+    #check if user added new location
+    if request.form.get("new_location"):
+        location = request.form.get("new_location")
         city = Location.create_location(location)
         db.session.add(city)
+    elif request.form.get("location"):
+        location = request.form.get("location")
+        city = Location.get_location_by_city(location)
+    else:
+        flash(f"Please enter location for Adoption Center.")
+
 
     #check if birthdate is correct length
     if len(birthdate) != 8:
@@ -56,25 +60,55 @@ def create():
                                 spay_or_neuter,
                                 city)
 
+
         db.session.add(new_cat)
         db.session.commit()   
+        flash(f"{new_cat.name} has been added to the {new_cat.location.city} Adoption Center!")
 
-
-    flash(f"{new_cat.name} has been added to the {new_cat.location.city} Adoption Center!")
 
     return redirect('/')
 
 
-@app.route("/update/<int:cat_id>", methods=["POST"])
+
+@app.route("/update/<int:cat_id>", methods=["GET", "POST"])
 def update(cat_id):
     """Update cat info."""
 
     cat_to_update = Cat.get_cat_by_id(cat_id)
-    new_spay_or_neuter = request.form.get("new_spay_or_neuter")
-    cat_to_update.spay_or_neuter = new_spay_or_neuter
-    db.session.commit()
+    locations = Location.get_locations()
+    
+    if request.method == "POST":
+        name = request.form.get("name")
+        gender = request.form.get("gender")
+        birthdate = request.form.get("birthdate")
+        color = request.form.get("color")
+        spay_or_neuter = request.form.get("spay_or_neuter")
 
-    return redirect('/')
+        #check if user added new location
+        if request.form.get("new_location"):
+            location = request.form.get("new_location")
+            city = Location.create_location(location)
+            db.session.add(city)
+        elif request.form.get("location"): 
+            location = request.form.get("location")
+            city = Location.get_location_by_city(location)
+        else:
+            flash(f"Please enter location for Adoption Center.")
+
+        #update info for current cat being edited
+        cat_to_update.name = name
+        cat_to_update.gender = gender
+        cat_to_update.birthdate = birthdate
+        cat_to_update.color = color
+        cat_to_update.spay_or_neuter = spay_or_neuter
+        cat_to_update.location = city
+        db.session.commit()
+
+        return redirect('/')
+
+    return render_template('update.html', 
+                            cat_to_update=cat_to_update, 
+                            locations=locations)
 
 
 @app.route("/delete/<int:cat_id>", methods=["POST"])

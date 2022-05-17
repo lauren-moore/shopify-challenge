@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}Cat Adoption Inventory - Update{% endblock %}
+
+{% block body %}
+<h1 id="title">Update Cat</h1>
+    <form action="/update/{{ cat_to_update.cat_id }}" method="POST">
+        <div class="row">
+            <div class="col-md-6">
+                Name
+                <p><input type="text" name="name" value="{{cat_to_update.name}}"></p>
+                Gender
+                <p><input type="text" name="gender" value="{{cat_to_update.gender}}"></p>
+                Birthdate (MMDDYYYY)
+                <p><input type="text" name="birthdate" value="{{cat_to_update.birthdate}}"></p>
+                Color
+                <p><input type="text" name="color" value="{{cat_to_update.color}}"></p>
+                Spayed or Neutered?                       
+                  <p><input type="radio" name="spay_or_neuter" value="Yes">
+                  <label for="Yes">Yes</label>
+                  <input type="radio" name="spay_or_neuter" value="No">
+                  <label for="No">No</label><br></p>
+                Location
+                {% if locations %}
+                    <p id="add-location">
+                        <select name="location">
+                            <option hidden disabled selected value> -- select an option -- </option>
+                            {% for city in locations %}
+                                <option value="{{city.city}}">{{city.city}}</option>
+                            {% endfor %}
+                        </select>
+                    </p>
+                {% endif %}
+                <p><input type="text" name="new_location"></p>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
