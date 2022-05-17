@@ -78,10 +78,6 @@ class Location(db.Model):
     @classmethod
     def get_locations(self):
         return Location.query.all()
-
-    @classmethod
-    def get_location_by_id(self, location_id):
-        return Location.query.get(location_id)
     
     @classmethod
     def get_location_by_city(self, city):
