@@ -3,13 +3,13 @@
 - [Instructions](#instructions)
 - [Tech Stack](#tech-stack)
 - [Installation](#installation)
+- [Features](#features)
+- [Demo](#demo)
 - [About the Developer](#about-the-developer)
 
 ## Instructions
 
 Build an inventory tracking web application with CRUD operations.
-
-Basic CRUD Functionalities:
 
 - Create inventory items
 - Edit Them
@@ -71,6 +71,36 @@ Run the app:
 
 You can now navigate to `localhost:5000/` to run the app.
 
+## Features
+
+- **Create a cat to add to inventory:**  methods=["POST"]
+
+Users can create a cat to add to their inventory by providing the following information for the cat: name, gender, birthdate, color, neuter/spay status, adoption location. A relationship is established between the cat created and the adoption location. 
+
+
+- **Create an Adoption Center (Inventory Warehouse):**  methods=["POST"]
+
+When creating a cat, a drop down menu is provided for current adoption centers(warehouses) in the database to store the cat. Additionally, an option to create a new adoption center is provided. Users provide the name of the city that the center will be located in. This creates a new adoption center option in the database.
+
+
+- **View all cats in inventory:**  methods=["GET"]
+
+View all the cats currently in the inventory, including which adoption center they are stored at. 
+
+
+- **Update cat in inventory:**  methods=["POST"]
+  
+Users can edit an existing cat in the database. They can edit any information about the cat, including name, gender, birthdate, color, spay/neuter status, and adoption center location. Doing so will update the existing cat in the database.
+
+
+- **Delete cat from inventory:**  methods=["DELETE"]
+  
+Users can delete exisitng cats from the database. 
+
+
+## Demo
+- View on [Replit](https://replit.com/@laurencaroleen/shopify-challenge#server.py)
+- Run the [demo](https://shopify-challenge.laurencaroleen.repl.co/)
 
 ## About the Developer
 
