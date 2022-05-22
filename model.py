@@ -13,7 +13,7 @@ class Cat(db.Model):
     cat_id = db.Column(db.Integer,
                        autoincrement=True,
                        primary_key=True)
-    name = db.Column(db.String, nullable=False)
+    name = db.Column(db.String, nullable=False, unique=True)
     gender = db.Column(db.String, nullable=False)
     birthdate = db.Column(db.String(8), nullable=False)
     color = db.Column(db.String, nullable=False)

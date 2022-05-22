@@ -100,7 +100,9 @@ Users can delete exisitng cats from the database.
 
 ## Demo
 - View on [Replit](https://replit.com/@laurencaroleen/shopify-challenge#server.py)
+
 - Run the [demo](https://shopify-challenge.laurencaroleen.repl.co/)
+
 
 ## About the Developer
 
